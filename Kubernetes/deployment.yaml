@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-devops
+spec:
+  selector:
+    matchLabels:
+      app: springboot-devops
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: springboot-devops
+    spec:
+      containers:
+        - name: springboot-devops
+          image: springboot-devops-sample:1.0
+          # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+# The port that the container is running on in the cluster
