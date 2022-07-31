@@ -15,34 +15,11 @@ spec:
       containers:
         - name: jenkins
           image: jenkins/jenkins:lts-jdk11
-          resources:
-            limits:
-              memory: "2Gi"
-              cpu: "1000m"
-            requests:
-              memory: "500Mi"
-              cpu: "500m"
           ports:
-            - name: httpport
+            - name: http-port
               containerPort: 8080
-            - name: jnlpport
+            - name: jnlp-port
               containerPort: 50000
-              livenessProbe:
-                httpGet:
-                  path: "/login"
-                  port: 8080
-                initialDelaySeconds: 90
-                periodSeconds: 10
-                timeoutSeconds: 5
-                failureThreshold: 5
-              readinessProbe:
-                httpGet:
-                  path: "/login"
-                  port: 8080
-                initialDelaySeconds: 60
-                periodSeconds: 10
-                timeoutSeconds: 5
-                failureThreshold: 3
           volumeMounts:
             - name: jenkins-home
               mountPath: /var/jenkins_home
