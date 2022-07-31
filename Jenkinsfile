@@ -15,6 +15,7 @@ pipeline {
       }
         stage('Build image') {
          steps {
+               sh "echo ToDo"
 //             sh "docker image build -t springboot-devops-sample:0.1 ."
 //              sh "docker push ..."
          }
